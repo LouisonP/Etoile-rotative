@@ -1,0 +1,99 @@
+/* 3.Faites le CSS.
+Le HTML est fini, donc créez un nouveau fichier du nom de "Programmez un champ d'étoiles qui fait une rotation.css". 
+Ce fichier commence par la mise en forme servant à déterminer l'état initial du document HTML et de son corps.
+Ces derniers doivent couvrir toute la largeur et la hauteur de la fenêtre du navigateur, et
+avoir un arrière noir pour qui représentera l'espace. */
+
+body, html {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+/* 4. Créez le conteneur du champ.
+Nous définissons ici les règles du conteneur du champ d'étoiles qui montera l'animation. Pour faire simple,
+nous indiquons qu'il doit afficher la taille totale de la page, mais vous pouvez modifier la largeur et la hauteur
+selon vos besoins dans vos propres projets. La position est relative afin qu'elle s'adapte au reste du contenu.
+et on peut positionner les champs intérieurs par rapport à la position du conteneur du champ. */
+
+.starfield{
+    position : relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 5. Créez les calsque du champ.
+Nous utilisons >* pour faire référence aux éléments qui sont des descendants directs du conteneur de champ
+d'étoiles, c'est-à-dire les balises span. Vous pouvez ainsi utiliser n'importe quel autre type d'élément si,
+pour une raison ou pour une autre, vous ne souhaitez pas employer span. Nous plaçons ces éléments de manière
+absolue dans le coin supérieur gauche, et leur taille doit recouvrir toute la largeur et la hauteur de la page. */
+
+.starfield > * {
+    position : absolute;
+    top : 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+/* 6. Dessinez les calques du champ.
+Les calques du champ étoilé doivent avoir une image montrant un ciel étoilé ave un arrière-plan transparent afin qu'on puisse
+voir tous les calques. Nous pouvons utlisier le CSS pour déterminer la taille de l'arrière-plan puis dessiner dessus sans avoir
+à charger d'image. Nous devons utiliser un dégradé radial pour dessiner les étoiles en différents points, et devons dire à l'arrière plan
+de se répéter pour que l'effet de l'image recouvre n'importe quelle taille déterminée par le conteneur. */
+
+.starfield > * {
+    background-size: 200px 200px;
+    background-image:
+
+    radial-gradient(2px 2px at 40px 60px, #ccc, rgba(0,0,0,0));
+
+   radical-gradient(2px 2px at 20px 50px, #ddd, rgba(0,0,0,0));
+
+   radical-gradient(2px 2px at 30px 100px, #eee, rgba(0,0,0,0));
+
+   radical-gradient(2px 2px at 40px 60px, #fff, rgba(0,0,0,0));
+
+   radical-gradient(2px 2px at 110px 90px, #ccc, rgba(0,0,0,0));
+
+   radical-gradient(2px 2px at 190px 150px, #ddd, rgba(0,0,0,0));
+
+    background-repeat: repeat;
+}
+
+/* 7. Les modes d'animation de calques.
+Nous terminos les définitions des calques du champ par des attributs importants pour cette animation. Tout d'abord, nous déterminons
+les attributs transform-origin afin que la rotation se fasse à partir du milieu du calque. Ensuite, nous précisons l'animation à utiliser,
+à laquelle nous donnons le nom de starfieldRorate. Elle se répétera à l'infini du début à la fin et aura une vitesse linéaire. */
+
+.starfield > * {
+    transform-origin: 50% 50%;
+    animation-name: starfieldRotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    }
+
+/* 8. Déterminez les vitesses d'animation.
+Les différents calques du champ d'étoiles peuvent s'animer à différentes vitesses afin de créer une parallaxe
+donner une profondeur au champ. Comme nous avons déjà appliqué une animation à chaque calque, il nous suffit d'indiquer plusieurs vitesses
+d'animation différentes afin que l'effet fonctionne. Pour cela, nous utilisons le sélecteur :nth-child afin de faire
+référence aux calques. */
+
+.starfield > *:nth-child(1){ animation-duration: 8s; }
+.starfield > *:nth-child(2){ animation-duration: 12s; }
+.starfield > *:nth-child(3){ animation-duration: 16s; }
+.starfield > *:nth-child(4){ animation-duration: 20s; }
+
+@keyframes starfieldRotate {
+    from {
+        transform:rotate(0deg);    
+}
+    to {
+        transform:rotate(360deg);
+    
+}
+}
